@@ -1,15 +1,77 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
- *= require_tree .
- *= require_self
- */
+/* app/assets/stylesheets/application.scss */
+
+/* 全体 */
+body {
+  font-family: 'Hiragino Sans', 'Helvetica Neue', Arial, sans-serif;
+  background: #f8f9fa;
+  margin: 0;
+  color: #333;
+}
+
+/* ヘッダー */
+.site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #2c3e50;
+  color: #fff;
+  padding: 1rem 2rem;
+}
+
+.site-header .logo {
+  font-size: 1.5rem;
+}
+
+.site-header .logo span {
+  font-size: 0.9rem;
+  opacity: 0.7;
+  margin-left: 0.5rem;
+}
+
+.btn {
+  background: #3498db;
+  color: white;
+  padding: 0.4rem 0.8rem;
+  margin-left: 0.5rem;
+  border-radius: 4px;
+  text-decoration: none;
+}
+
+.btn:hover {
+  background: #2980b9;
+}
+
+/* 小説一覧 */
+.section-title {
+  text-align: center;
+  margin: 2rem 0 1rem;
+}
+
+.novel-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  padding: 0 2rem 2rem;
+}
+
+.novel-card {
+  background: #fff;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.novel-card h3 {
+  margin-top: 0;
+  color: #2c3e50;
+}
+
+.novel-card .excerpt {
+  margin: 0.5rem 0;
+  color: #555;
+}
+
+.novel-card .meta {
+  font-size: 0.8rem;
+  color: #777;
+}
