@@ -1,2 +1,17 @@
-<h1>Novels#show</h1>
-<p>Find me in app/views/novels/show.html.erb</p>
+<h1><%= @novel.title %></h1>
+
+<p><strong>投稿者:</strong> <%= @novel.user.nickname %></p>
+<p><strong>投稿日:</strong> <%= l(@novel.created_at, format: :long) %></p>
+
+<div class="novel-content">
+  <%= simple_format(@novel.content) %>
+</div>
+
+<hr>
+
+<% if user_signed_in? && @novel.user == current_user %>
+  <%= link_to "編集", edit_novel_path(@novel) %> |
+  <%= link_to "削除", novel_path(@novel), method: :delete, data: { confirm: "本当に削除しますか？" } %>
+<% end %>
+
+<p><%= link_to "一覧に戻る", novels_path %></p>

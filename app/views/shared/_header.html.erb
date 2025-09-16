@@ -1,0 +1,17 @@
+<header class="site-header">
+  <h1 class="logo">
+    <%= link_to root_path, class: "logo-link" do %>
+      泡沫文庫 <span>Bubble Library</span>
+    <% end %>
+  </h1>
+
+  <nav class="nav-menu">
+    <% if user_signed_in? %>
+      <%= link_to "新規投稿", new_novel_path %> |
+      <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+    <% else %>
+      <%= link_to "ログイン", new_user_session_path %> |
+      <%= link_to "新規登録", new_user_registration_path %>
+    <% end %>
+  </nav>
+</header>
