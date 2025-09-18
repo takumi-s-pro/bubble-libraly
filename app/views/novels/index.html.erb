@@ -1,6 +1,4 @@
-<!-- app/views/novels/index.html.erb -->
 <div class="novels-container">
-
   <main>
     <h2 class="section-title">最新の小説</h2>
     <div class="novel-list">
@@ -8,7 +6,10 @@
         <article class="novel-card">
           <h3><%= link_to novel.title, novel_path(novel) %></h3>
           <p class="excerpt"><%= truncate(novel.content, length: 100) %></p>
-          <p class="meta">投稿者: <%= novel.user.nickname %> | 公開期限: <%= l(novel.expires_at, format: :short) %></p>
+          <p class="meta">
+            投稿者: <%= novel.user.nickname %> |
+            公開期限: <%= l(novel.expires_at, format: :short) %>
+          </p>
         </article>
       <% end %>
     </div>

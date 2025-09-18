@@ -1,5 +1,6 @@
 class NovelsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
+  before_action :set_novel, only: [:show, :edit, :update, :destroy]
 
   def index
     @novels = Novel.active.order(created_at: :desc)
@@ -27,9 +28,17 @@ class NovelsController < ApplicationController
   end
 
   def edit
+    @novel = Novel.find(params[:id])
   end
 
   def update
+    if @novel.user != current_user
+      redirect_to root_path, alert: "権限がありません"
+    elsif @novel.update(novel_params)
+      redirect_to @novel, notice: "小説を更新しました"
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def destroy
@@ -39,5 +48,9 @@ class NovelsController < ApplicationController
 
   def novel_params
     params.require(:novel).permit(:title, :content)
+  end
+
+  def set_novel
+    @novel = Novel.find(params[:id])
   end
 end

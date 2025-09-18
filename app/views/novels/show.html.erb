@@ -1,17 +1,26 @@
-<h1><%= @novel.title %></h1>
+<div class="novel-show">
+  <h2 class="novel-title"><%= @novel.title %></h2>
 
-<p><strong>投稿者:</strong> <%= @novel.user.nickname %></p>
-<p><strong>投稿日:</strong> <%= l(@novel.created_at, format: :long) %></p>
+  <div class="novel-meta">
+    <span>投稿者: <%= @novel.user.nickname %></span>
+    <span>公開期限: <%= l(@novel.expires_at, format: :short) %></span>
+  </div>
 
-<div class="novel-content">
-  <%= simple_format(@novel.content) %>
+  <div class="novel-content">
+    <%= simple_format(@novel.content) %>
+  </div>
+
+  <% if user_signed_in? && current_user == @novel.user %>
+    <div class="novel-actions">
+      <%= link_to '編集', edit_novel_path(@novel), class: "btn btn-edit" %>
+      <%= button_to '削除', novel_path(@novel),
+                    method: :delete,
+                    data: { confirm: '本当に削除しますか？' },
+                    class: "btn btn-delete" %>
+    </div>
+  <% end %>
+
+  <div class="back-link">
+    <%= link_to '← トップページに戻る', root_path, class: "btn btn-back" %>
+  </div>
 </div>
-
-<hr>
-
-<% if user_signed_in? && @novel.user == current_user %>
-  <%= link_to "編集", edit_novel_path(@novel) %> |
-  <%= link_to "削除", novel_path(@novel), method: :delete, data: { confirm: "本当に削除しますか？" } %>
-<% end %>
-
-<p><%= link_to "一覧に戻る", novels_path %></p>

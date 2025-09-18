@@ -1,2 +1,9 @@
-<h1>Novels#edit</h1>
-<p>Find me in app/views/novels/edit.html.erb</p>
+<div class="novel-edit">
+  <h2 class="page-title">小説を編集</h2>
+
+  <%= render 'form', novel: @novel %>
+
+  <div class="back-link">
+    <%= link_to '← 戻る', novel_path(@novel), class: "btn btn-back" %>
+  </div>
+</div>
