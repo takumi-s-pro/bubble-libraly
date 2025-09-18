@@ -1,11 +1,14 @@
 <header class="site-header">
   <%= link_to '泡沫文庫 <span>Bubble Library</span>'.html_safe, root_path, class: 'logo-link' %>
+  
 
   <% if user_signed_in? %>
     <div class="user-menu">
       <span><%= current_user.nickname %> さん</span>
       <%= link_to '新規投稿', new_novel_path, class: 'btn' %>
-      <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'btn' %>
+      <%= link_to 'ログアウト', destroy_user_session_path,
+            data: { turbo_method: :delete },
+            class: "btn btn-danger" %>
     </div>
   <% else %>
     <div class="auth-links">
