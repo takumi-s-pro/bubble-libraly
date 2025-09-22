@@ -1,9 +1,9 @@
-<%= form_with(model: novel, local: true, class: "novel-form") do |form| %>
+<%= form_with(model: @novel, local: true, class: "novel-form") do |form| %>
   <% if novel.errors.any? %>
     <div class="errors">
-      <h3><%= pluralize(novel.errors.count, "件のエラー") %> があります:</h3>
+      <h3><%= pluralize(@novel.errors.count, "件のエラー") %> があります:</h3>
       <ul>
-        <% novel.errors.full_messages.each do |message| %>
+        <% @novel.errors.full_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>
       </ul>

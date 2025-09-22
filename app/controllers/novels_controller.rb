@@ -3,7 +3,7 @@ class NovelsController < ApplicationController
   before_action :set_novel, only: [:show, :edit, :update, :destroy]
 
   def index
-    @novels = Novel.active.order(created_at: :desc)
+    @novels = Novel.where("expires_at > ?", Time.current).order(created_at: :desc)
   end
 
   def show
@@ -17,8 +17,6 @@ class NovelsController < ApplicationController
 
   def create
     @novel = current_user.novels.build(novel_params)
-    # 投稿から24時間で非表示にする例
-    @novel.expires_at = 24.hours.from_now
 
     if @novel.save
       redirect_to @novel, notice: '小説を投稿しました'
@@ -47,7 +45,7 @@ class NovelsController < ApplicationController
   private
 
   def novel_params
-    params.require(:novel).permit(:title, :content)
+    params.require(:novel).permit(:title, :content, :expires_at)
   end
 
   def set_novel
