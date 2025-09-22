@@ -17,6 +17,7 @@ class NovelsController < ApplicationController
 
   def create
     @novel = current_user.novels.build(novel_params)
+    @novel.expires_at ||= 24.hours.from_now
 
     if @novel.save
       redirect_to @novel, notice: '小説を投稿しました'
@@ -40,6 +41,12 @@ class NovelsController < ApplicationController
   end
 
   def destroy
+    if @novel.user != current_user
+      redirect_to root_path, alert: "権限がありません"
+    else
+      @novel.destroy
+      redirect_to root_path, notice: "小説を削除しました"
+    end
   end
 
   private
