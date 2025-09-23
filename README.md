@@ -12,7 +12,7 @@ https://bubble-libraly.onrender.com
 # テスト用アカウント
 BASIC認証
 ID:admin
-password:test1234
+password:2222
 
 # 利用方法
  1.トップページのヘッダーからユーザー新規登録を行う
