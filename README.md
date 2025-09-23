@@ -50,7 +50,7 @@ password:2222
 
 # ローカルでの動作方法
 以下のコマンドを実行<br>
-% git clone <br>
+% git clone https://github.com/takumi-s-pro/bubble-libraly<br>
 % cd bubble library<br>
 % bundle install<br>
 % rails db:create<br>
