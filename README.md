@@ -7,7 +7,7 @@ Bubble Library
 ・1000文字以内の短編小説を投稿・閲覧できる
 
 # URL
-https://github.com/takumi-s-pro/bubble-libraly
+https://bubble-libraly.onrender.com
 
 # テスト用アカウント
 BASIC認証
@@ -20,7 +20,14 @@ password:test1234
  3.投稿した小説が指定した時間(デフォルトでは24時間後)に削除される
 
 # アプリケーションを作成した背景
-・時間のかかる読書をなるべく手軽に楽しめるようにしたい
+・「一期一会」の読書体験:
+  SNSのストーリー機能のように、"今しか読めない"という限定感が、読者に「見逃したくない」という気持ちを抱かせます。一つ一つの作品との出会いが、より特別なものになる。
+
+・作者の投稿ハードルを下げる:
+  「いずれ消える」という安心感と、「短い文字数でOK」という手軽さから、完璧な作品でなくても気軽に投稿しやすくなります。アイデアの断片や、ふと思いついた物語の習作などを発表する場として最適。
+
+・読者の閲覧ハードルを下げる:
+  短編なので、通勤・通学中や寝る前などのちょっとした隙間時間でサクッと読み切れる。
 
 # 実装した機能についての画像やGIFおよびその説明
 ・投稿した内容が指定時間になったら削除される動画
@@ -51,6 +58,9 @@ password:test1234
 % rails s
 
 # 工夫したポイント
+・投稿した小説が消えるということ
+・1000文字以内の短編専用の小説アプリのため、サクッと楽しめる
+・PC、スマートフォンの両方から利用できる
 
 # 改善点
  ・UI改善
@@ -64,31 +74,3 @@ password:test1234
 # 制作時間
  約10日
 
-### テーブル一覧
-
-#### 1. usersテーブル
-| カラム名            | 型         | 制約                       | 説明                  |
-|--------------------|------------|----------------------------|----------------------|
-| nickname           | string     | null: false                | ニックネーム          |
-| email              | string     | null: false, unique: true  | メール               |
-| encrypted_password | string     | null: false                | パスワード            |
-| profile            | text       |                            | 自己紹介文            |
-
-
-### Association
-has_many :novels
-
-
-#### 1. novelsテーブル
-| カラム名    | 型         | 制約                       | 説明                |
-|------------|------------|----------------------------|--------------------|
-| title      | string     | null: false                | タイトル            |
-| content    | text       | null: false                | 本文(1000文字以内)  |
-| user_id    | integer    | null: false,FOREIGN KEY    | 投稿者ID            |
-| created_at | datetime   | null: false                | 投稿日時            |
-| updated_at | datetime   | null: false                | 更新日時            |
-| expires_at | datetime   | null: false                | 自動削除日時        |
-
-
-### Association
-belongs_to :users
