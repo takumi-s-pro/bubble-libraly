@@ -3,7 +3,7 @@ class Novel < ApplicationRecord
 
   validates :title, presence: true
   validates :content, presence: true
-  validates :expires_at, presence: true
+  #validates :expires_at, presence: true
 
   # 保存前に公開期限を補正
   before_validation :set_default_expires_at, on: :create
