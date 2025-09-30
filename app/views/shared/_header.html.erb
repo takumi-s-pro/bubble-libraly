@@ -9,6 +9,7 @@
       <%= link_to 'ログアウト', destroy_user_session_path,
             data: { turbo_method: :delete },
             class: "btn btn-danger" %>
+      <%= link_to "マイページ", user_path(current_user), class: "btn" %>
     </div>
   <% else %>
     <div class="auth-links">

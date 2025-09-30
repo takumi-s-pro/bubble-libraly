@@ -1,0 +1,26 @@
+<div class="mypage-container">
+  <h2><%= @user.nickname %> さんのマイページ</h2>
+
+  <section class="profile">
+    <h3>プロフィール</h3>
+    <p><%= @user.profile.presence || "プロフィールは未設定です。" %></p>
+  </section>
+
+  <section class="novels">
+    <h3>投稿した小説一覧</h3>
+    <% if @novels.any? %>
+      <ul>
+        <% @novels.each do |novel| %>
+          <li>
+            <%= link_to novel.title, novel_path(novel) %>
+            （公開期限: <%= l(novel.expires_at, format: :short) %>）
+          </li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p>まだ投稿はありません。</p>
+    <% end %>
+  </section>
+
+  <%= link_to "トップページへ戻る", root_path, class: "btn" %>
+</div>
