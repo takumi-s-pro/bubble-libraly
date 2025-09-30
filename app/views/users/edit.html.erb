@@ -1,0 +1,16 @@
+<div class="edit-profile-container">
+  <h2>プロフィール編集</h2>
+
+  <%= form_with(model: @user, local: true) do |form| %>
+    <div class="field">
+      <%= form.label :profile, "自己紹介" %><br>
+      <%= form.text_area :profile, rows: 5, placeholder: "自己紹介を書いてください" %>
+    </div>
+
+    <div class="actions">
+      <%= form.submit "更新する", class: "btn" %>
+    </div>
+  <% end %>
+
+  <%= link_to "マイページに戻る", user_path(@user), class: "back-link" %>
+</div>
